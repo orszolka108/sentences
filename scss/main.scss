@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    background-image: url("../images/back.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+.container {
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: rgb(50, 50, 50);
+    margin-top: 150px;
+    .sentences {
+        margin: 25px;
+        .first-sentence {
+
+        }
+        .second-sentence {
+            overflow: hidden;
+        }
+    }
+    .button {
+        margin-bottom: 25px;
+        background-color: rgb(96,96,96);
+        padding: 10px 20px;
+        font-size: 20px;
+        color: rgb(0, 0, 0);
+        border-radius: 10px;
+    }
+
+}

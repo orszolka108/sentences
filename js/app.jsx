@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-require ("../css/main.css");
+require ("../scss/main.scss");
 
 //importing sentences database from js file
 import sentences from './sentences.js';
@@ -11,7 +11,7 @@ class SentenceOne extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //states realted to displaying first sentences
+            //states related to displaying first sentences
             sentenceOne: sentences[0],
             counterOne: 0,
             freezeOne: false,
@@ -29,26 +29,29 @@ class SentenceOne extends React.Component {
         //setting interval for displaying letter by letter
         this.intervalOne = setInterval(() => {
             let freezeOne = false
+            //condition to check if sentence is complete
             if (this.state.counterOne == this.state.sentenceOne.length) {
                 freezeOne = true
             }
+            //setting state to display letters
             this.setState ({
                 counterOne: this.state.counterOne + 1,
                 freezeOne: freezeOne
             })
         },50)
     }
-
+    // onClick event on button
     handleClick = (e) => {
         this.setState ({
             cycle: !this.state.cycle
 
         })
 }
-
     startSentence = () => {
+        //checks if are on the end of the sentence
         if (this.state.counterTwo == this.state.sentenceTwo.length-1) {
             let counter = this.state.counter + 1
+            //checks 
             if ((this.state.cycle) && (counter == sentences.length - 1)){
                 counter = 1
             }
@@ -87,12 +90,12 @@ class SentenceOne extends React.Component {
         }
         //adding sentences to DOM
         return (
-            <div>
-                <div>
-                    <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
-                    <h2>{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+            <div className = "container">
+                <div className = 'sentences'>
+                    <h1 className="first-sentence">Dobre słowo na dzisiaj: {this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
+                    <h2 className="second-sentence">{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
                 </div>
-                <button onClick={this.handleClick}>CLICK ME!</button>
+                <button className = "button" onClick={this.handleClick}>CLICK ME!</button>
             </div>
         )
     }
