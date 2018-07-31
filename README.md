@@ -7,8 +7,8 @@
 - by default, the sentences in the second line are displayed continuously.</br>
 - when the button is clicked, they appears only once.</br>
 
-
-
+<h4>Stack:</h4>
+-React
 
 [[Preview Website]](https://orszolka108.github.io/sentences/)
 
