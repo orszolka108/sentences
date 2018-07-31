@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-require ("../scss/main.scss");
+//require ("../scss/main.scss");
 
 //importing sentences database from js file
 import sentences from './sentences.js';
@@ -112,7 +112,7 @@ class App extends React.Component {
     }
 }
 
-export {App}
+export default App
 export {SentenceOne}
 
 

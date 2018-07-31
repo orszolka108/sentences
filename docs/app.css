@@ -19,7 +19,8 @@ body {
   margin-top: 150px; }
   .container .sentences {
     margin: 25px; }
-    .container .sentences .second-sentence {
+    .container .sentences .sec-container {
+      height: 50px;
       overflow: hidden; }
   .container .button {
     margin-bottom: 25px;
