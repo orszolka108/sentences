@@ -95,7 +95,9 @@ class SentenceOne extends React.Component {
             <div className = "container">
                 <div className = 'sentences'>
                     <h1 className="first-sentence"> {this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
-                    <h2 className="second-sentence">{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+                    <div className="sec-container">
+                        <h2 className="second-sentence">{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+                    </div>
                 </div>
                 <button className = "button" onClick={this.handleClick}>DO ONCE!</button>
             </div>

@@ -23,9 +23,13 @@ body {
         .first-sentence {
 
         }
+      .sec-container {
+        height: 50px;
+        overflow: hidden;
         .second-sentence {
-            overflow: hidden;
         }
+      }
+
     }
     .button {
         margin-bottom: 25px;
