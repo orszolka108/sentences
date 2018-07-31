@@ -54,7 +54,9 @@ class SentenceOne extends React.Component {
         super(props);
         this.state = {
             sentenceOne: "Szczęście jest decyzją, nie punktem na mapie.",
-            counter: 0,
+            sentenceTwo: "Początek jest najważniejszą częścią pracy.",
+            counterOne: 0,
+            counterTwo: 0,
             freeze: false
         }
     }
@@ -62,16 +64,15 @@ class SentenceOne extends React.Component {
     componentDidMount() {
         this.intervalId = setInterval(() => {
             this.setState ({
-                counter: this.state.counter + 1
+                counterOne: this.state.counterOne + 1
             })
-            if (this.state.counter == this.state.sentenceOne.length) {
+            if (this.state.counterOne == this.state.sentenceOne.length) {
                 this.setState ({
                     freeze: true,
                     counter: 0
                 })
-
-            } else if (this.state.counter > this.state.sentenceOne.length) {
                 clearInterval(this.intervalId)
+
             }
         }, 50)
     }
@@ -83,10 +84,10 @@ class SentenceOne extends React.Component {
 
     render() {
         if (this.state.freeze != true) {
-            return <h1>{this.state.sentenceOne.substr(0, this.state.counter)}</h1>
+            return <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
         } else if (this.state.freeze) {
             console.log(this.state.freeze)
-            console.log(this.state.counter)
+            console.log(this.state.counterOne)
             return (
                 <div>
                     <h1>{this.state.sentenceOne}</h1>
@@ -94,7 +95,7 @@ class SentenceOne extends React.Component {
                                  {/*sentenceOne = {this.state.sentence}*/}
                                  {/*freeze = {this.state.freeze}*/}
                     {/*/>*/}
-                    <h2>{this.state.sentence.substr(0, this.state.counter)}</h2>
+                    <h2>{this.state.sentenceTwo}</h2>
                 </div>
             )
         }
