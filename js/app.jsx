@@ -3,44 +3,55 @@ import ReactDOM from 'react-dom';
 
 require ("../css/main.css");
 
-
+//importing sentences database from js file
 import sentence from './sentences.js';
 
+//definition of the class component, responsible for displaying sentences letter after letter
 class SentenceOne extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sentenceOne: "Szczęście jest decyzją, nie punktem na mapie.",
-            sentenceTwo: "Początek jest najważniejszą częścią pracy.",
+            //states realted to displaying first sentence
+            sentenceOne: sentence[0],
             counterOne: 0,
-            counterTwo: 0,
-            counter: 2,
             freezeOne: false,
-            freezeTwo: false
+            //states related to displaying second sentence
+            counterTwo: 0,
+            sentenceTwo: sentence[1],
+            freezeTwo: false,
+            //cycle counter
+            counter: 2
         }
     }
-
+    //method for displaying first sentence
     componentDidMount() {
+        //setting interval for displaying letter by letter
         this.intervalOne = setInterval(() => {
             this.setState ({
                 counterOne: this.state.counterOne + 1
             })
+            //condition to check if sentence one is completed
             if (this.state.counterOne == this.state.sentenceOne.length) {
                 this.setState ({
                     freezeOne: true
                 })
             }
-        }, 10)
+            //interval time for first sentence
+        },10)
     }
 
     render() {
+        //checking if sentence one is completed
         if (this.state.freezeOne) {
+            //clearing interval of the first sentence
             clearInterval(this.intervalOne)
+            //setting interval for second sentence displaying letter by letter
             this.intervalTwo = setInterval(() => {
                 this.setState ({
                     freezeOne: false,
                     counterTwo: this.state.counterTwo + 1
                 })
+                //condition for swaping sentences from database
                 if (this.state.counterTwo == this.state.sentenceTwo.length) {
                     this.setState ({
                         counterTwo: 0,
@@ -51,11 +62,12 @@ class SentenceOne extends React.Component {
                 }
             }, 10)
         }
-
+        //clearing interval for second sentence
         if (this.state.freezeTwo) {
             clearInterval(this.intervalTwo);
 
         }
+        //adding sentences to DOM
         return (
             <div>
                 <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
@@ -65,7 +77,7 @@ class SentenceOne extends React.Component {
     }
 }
 
-
+// definition of the class component responsible for generating SentenceOne component
 class App extends React.Component {
     render() {
         return <SentenceOne/>
