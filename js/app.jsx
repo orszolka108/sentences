@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 require ("../css/main.css");
 
+
 import sentence from './sentences.js';
 
 class SentenceOne extends React.Component {
@@ -44,14 +45,8 @@ class SentenceOne extends React.Component {
                     this.setState ({
                         counterTwo: 0,
                         counter: this.state.counter + 1,
-                        freezeTwo: (this.state.counter >= sentence.length) ? true : false,
-                        sentenceTwo: (this.state.counter == sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter]
-
-                    })
-                }
-                if (this.state.sentenceTwo) {
-                    this.setState({
-                        sentenceTwo: sentence[sentence.length-1]
+                        sentenceTwo: (this.state.counter == sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
+                        freezeTwo: (this.state.counter == sentence.length) ? true : false,
                     })
                 }
             }, 10)
