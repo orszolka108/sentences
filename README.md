@@ -8,7 +8,6 @@
 - when the button is clicked, they appears only once.</br>
 
 <h4>Stack:</h4>
-</br>
 -React
 
 [[Preview Website]](https://orszolka108.github.io/sentences/)
