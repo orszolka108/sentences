@@ -7,7 +7,7 @@
 - by default, the sentences in the second line are displayed continuously.</br>
 - when the button is clicked, they appears only once.</br>
 
-Stack:
+<h4>Stack:</h4>
 </br>
 -React
 
