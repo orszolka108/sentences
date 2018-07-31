@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+  background-image: url(images/back.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; }
+
+.container {
+  margin: 0 auto;
+  width: 800px;
+  text-align: center;
+  border: 1px solid silver;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #323232;
+  margin-top: 150px; }
+  .container .sentences {
+    margin: 25px; }
+    .container .sentences .second-sentence {
+      overflow: hidden; }
+  .container .button {
+    margin-bottom: 25px;
+    background-color: #606060;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px; }
+
