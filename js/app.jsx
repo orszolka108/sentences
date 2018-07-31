@@ -20,7 +20,9 @@ class SentenceOne extends React.Component {
             sentenceTwo: sentence[1],
             freezeTwo: false,
             //cycle counter
-            counter: 2
+            counter: 2,
+            //state to change the way of displaying sentenceTwo (once or cycle)
+            cycle: true
         }
     }
     //method for displaying first sentence
@@ -40,6 +42,13 @@ class SentenceOne extends React.Component {
         },10)
     }
 
+    handleClick = (e) => {
+        this.setState ({
+            cycle: !this.state.cycle
+
+        })
+}
+
     render() {
         //checking if sentence one is completed
         if (this.state.freezeOne) {
@@ -53,13 +62,27 @@ class SentenceOne extends React.Component {
                 })
                 //condition for swaping sentences from database
                 if (this.state.counterTwo == this.state.sentenceTwo.length) {
-                    this.setState ({
-                        counterTwo: 0,
-                        counter: this.state.counter + 1,
-                        sentenceTwo: (this.state.counter == sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
-                        freezeTwo: (this.state.counter == sentence.length) ? true : false,
-                    })
+                    //condition for displaying sentences in cycle
+                    if (this.state.cycle && this.state.counter == sentence.length-1) {
+                        console.log(this.state.counter)
+                        this.setState ({
+                            counterTwo: 0,
+                            counter: 1,
+                            sentenceTwo: (this.state.counter >= sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
+                            freezeTwo: (this.state.counter == sentence.length) ? true : false,
+                        })
+                        //condition for displaying sentences once
+                    } else {
+                        this.setState ({
+                            counterTwo: 0,
+                            counter: this.state.counter + 1,
+                            sentenceTwo: (this.state.counter == sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
+                            freezeTwo: (this.state.counter == sentence.length) ? true : false,
+                        })
+                    }
+
                 }
+                //interval for the second sentence
             }, 10)
         }
         //clearing interval for second sentence
@@ -72,6 +95,7 @@ class SentenceOne extends React.Component {
             <div>
                 <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
                 <h2>{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+                <button onClick={this.handleClick}>CLICK ME!</button>
             </div>
         )
     }
