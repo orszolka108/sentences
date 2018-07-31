@@ -4,42 +4,39 @@ import ReactDOM from 'react-dom';
 require ("../css/main.css");
 
 //importing sentences database from js file
-import sentence from './sentences.js';
+import sentences from './sentences.js';
 
 //definition of the class component, responsible for displaying sentences letter after letter
 class SentenceOne extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //states realted to displaying first sentence
-            sentenceOne: sentence[0],
+            //states realted to displaying first sentences
+            sentenceOne: sentences[0],
             counterOne: 0,
             freezeOne: false,
-            //states related to displaying second sentence
+            //states related to displaying second sentences
             counterTwo: 0,
-            sentenceTwo: sentence[1],
-            freezeTwo: false,
+            sentenceTwo: sentences[1],
             //cycle counter
-            counter: 2,
+            counter: 1,
             //state to change the way of displaying sentenceTwo (once or cycle)
-            cycle: true
+            cycle: false
         }
     }
-    //method for displaying first sentence
+    //method for displaying first sentences
     componentDidMount() {
         //setting interval for displaying letter by letter
         this.intervalOne = setInterval(() => {
-            this.setState ({
-                counterOne: this.state.counterOne + 1
-            })
-            //condition to check if sentence one is completed
+            let freezeOne = false
             if (this.state.counterOne == this.state.sentenceOne.length) {
-                this.setState ({
-                    freezeOne: true
-                })
+                freezeOne = true
             }
-            //interval time for first sentence
-        },10)
+            this.setState ({
+                counterOne: this.state.counterOne + 1,
+                freezeOne: freezeOne
+            })
+        },50)
     }
 
     handleClick = (e) => {
@@ -49,52 +46,52 @@ class SentenceOne extends React.Component {
         })
 }
 
+    startSentence = () => {
+        if (this.state.counterTwo == this.state.sentenceTwo.length-1) {
+            let counter = this.state.counter + 1
+            if ((this.state.cycle) && (counter == sentences.length - 1)){
+                counter = 1
+            }
+            if (this.state.counter < sentences.length - 1) {
+                let sentenceTwo = sentences[this.state.counter + 1]
+
+                let counterTwo = 0
+                this.setState({
+                    counter: counter,
+                    counterTwo: counterTwo,
+                    sentenceTwo: sentenceTwo
+                })
+            }
+        } else {
+            let counterTwo = this.state.counterTwo + 1
+            this.setState({
+                counterTwo: counterTwo
+            })
+        }
+    }
+
     render() {
         //checking if sentence one is completed
         if (this.state.freezeOne) {
-            //clearing interval of the first sentence
+            //clearing interval of the first sentences
             clearInterval(this.intervalOne)
             //setting interval for second sentence displaying letter by letter
-            this.intervalTwo = setInterval(() => {
-                this.setState ({
-                    freezeOne: false,
-                    counterTwo: this.state.counterTwo + 1
-                })
-                //condition for swaping sentences from database
-                if (this.state.counterTwo == this.state.sentenceTwo.length) {
-                    //condition for displaying sentences in cycle
-                    if (this.state.cycle && this.state.counter == sentence.length-1) {
-                        console.log(this.state.counter)
-                        this.setState ({
-                            counterTwo: 0,
-                            counter: 1,
-                            sentenceTwo: (this.state.counter >= sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
-                            freezeTwo: (this.state.counter == sentence.length) ? true : false,
-                        })
-                        //condition for displaying sentences once
-                    } else {
-                        this.setState ({
-                            counterTwo: 0,
-                            counter: this.state.counter + 1,
-                            sentenceTwo: (this.state.counter == sentence.length-1) ? sentence[sentence.length-1]: sentence[this.state.counter],
-                            freezeTwo: (this.state.counter == sentence.length) ? true : false,
-                        })
-                    }
-
-                }
-                //interval for the second sentence
-            }, 10)
+            if (this.intervalTwo == null) {
+                this.intervalTwo = setInterval(this.startSentence, 50)
+            }
         }
-        //clearing interval for second sentence
-        if (this.state.freezeTwo) {
+        //clearing interval for second sentences
+        if ((this.state.counter == sentences.length - 1) && (this.state.counterTwo == this.state.sentenceTwo.length - 1)) {
             clearInterval(this.intervalTwo);
 
         }
         //adding sentences to DOM
         return (
             <div>
-                <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
-                <h2>{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+                <div>
+                    <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
+                    <h2>{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+                </div>
                 <button onClick={this.handleClick}>CLICK ME!</button>
             </div>
         )
@@ -107,6 +104,9 @@ class App extends React.Component {
         return <SentenceOne/>
     }
 }
+
+export {App}
+export {SentenceOne}
 
 
 document.addEventListener('DOMContentLoaded', function(){
