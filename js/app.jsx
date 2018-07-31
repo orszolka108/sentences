@@ -49,6 +49,7 @@ import sentence from './sentences.js';
 // }
 
 
+//
 class SentenceOne extends React.Component {
     constructor(props) {
         super(props);
@@ -57,48 +58,48 @@ class SentenceOne extends React.Component {
             sentenceTwo: "Początek jest najważniejszą częścią pracy.",
             counterOne: 0,
             counterTwo: 0,
-            freeze: false
+            freezeOne: false,
+            freezeTwo: false
         }
     }
 
     componentDidMount() {
-        this.intervalId = setInterval(() => {
+        this.intervalOne = setInterval(() => {
             this.setState ({
                 counterOne: this.state.counterOne + 1
             })
             if (this.state.counterOne == this.state.sentenceOne.length) {
                 this.setState ({
-                    freeze: true,
-                    counter: 0
+                    freezeOne: true
                 })
-                clearInterval(this.intervalId)
-
             }
         }, 50)
     }
 
-    componentWillUnmount() {
-        clearInterval(this.intervalId)
-
-    }
-
     render() {
-        if (this.state.freeze != true) {
-            return <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
-        } else if (this.state.freeze) {
-            console.log(this.state.freeze)
-            console.log(this.state.counterOne)
-            return (
-                <div>
-                    <h1>{this.state.sentenceOne}</h1>
-                    {/*<SentenceTwo counter={this.state.counter}*/}
-                                 {/*sentenceOne = {this.state.sentence}*/}
-                                 {/*freeze = {this.state.freeze}*/}
-                    {/*/>*/}
-                    <h2>{this.state.sentenceTwo}</h2>
-                </div>
-            )
+        if (this.state.freezeOne) {
+            clearInterval(this.intervalOne)
+            this.intervalTwo = setInterval(() => {
+                this.setState ({
+                    freezeOne: false,
+                    counterTwo: this.state.counterTwo + 1
+                })
+                if (this.state.counterTwo == this.state.sentenceTwo.length) {
+                    this.setState ({
+                        freezeTwo: true
+                    })
+                }
+            }, 50)
         }
+        if (this.state.freezeTwo) {
+            clearInterval(this.intervalTwo)
+        }
+        return (
+            <div>
+                <h1>{this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
+                <h2>{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
+            </div>
+        )
     }
 }
 
