@@ -38,7 +38,7 @@ class SentenceOne extends React.Component {
                 counterOne: this.state.counterOne + 1,
                 freezeOne: freezeOne
             })
-        },50)
+        },80)
     }
     // onClick event on button
     handleClick = (e) => {
@@ -82,7 +82,7 @@ class SentenceOne extends React.Component {
             clearInterval(this.intervalOne)
             //setting interval for second sentence displaying letter by letter
             if (this.intervalTwo == null) {
-                this.intervalTwo = setInterval(this.startSentence, 50)
+                this.intervalTwo = setInterval(this.startSentence, 80)
             }
         }
         //clearing interval for second sentences
