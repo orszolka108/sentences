@@ -1,7 +1,8 @@
 module.exports = [
-    "Szczęscie jest decyzją, nie punktem na mapie",
-    "Początek jest najważniejszą częścią pracy.",
-    "Z Bogiem życie ma sens i cel!",
-    "Ludzie Boga nie znajdują, bo go nie szukają z własnej woli.",
-    "Przez trudy i kryzysy życia, nie można przejść zwycięsko bez Jezusa!"
+    "The pen is mightier than the sword.",
+    "Fortune favors the bold.",
+    "No man is an island.",
+    "There’s no place like home.",
+    "Never look a gift horse in the mouth.",
+    "Easy come, easy go."
 ]

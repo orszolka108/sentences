@@ -21,7 +21,7 @@ class SentenceOne extends React.Component {
             //cycle counter
             counter: 1,
             //state to change the way of displaying sentenceTwo (once or cycle)
-            cycle: false
+            cycle: true,
         }
     }
     //method for displaying first sentences
@@ -51,20 +51,22 @@ class SentenceOne extends React.Component {
         //checks if are on the end of the sentence
         if (this.state.counterTwo == this.state.sentenceTwo.length-1) {
             let counter = this.state.counter + 1
-            //checks 
+            //checks if sentences should cycle and checks if it is at the end of sentences array
             if ((this.state.cycle) && (counter == sentences.length - 1)){
                 counter = 1
             }
+            //checks if there are more sentences to be displayed
             if (this.state.counter < sentences.length - 1) {
                 let sentenceTwo = sentences[this.state.counter + 1]
-
                 let counterTwo = 0
+
                 this.setState({
                     counter: counter,
                     counterTwo: counterTwo,
                     sentenceTwo: sentenceTwo
                 })
             }
+            // or keep counting
         } else {
             let counterTwo = this.state.counterTwo + 1
             this.setState({
@@ -92,10 +94,10 @@ class SentenceOne extends React.Component {
         return (
             <div className = "container">
                 <div className = 'sentences'>
-                    <h1 className="first-sentence">Dobre słowo na dzisiaj: {this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
+                    <h1 className="first-sentence"> {this.state.sentenceOne.substr(0, this.state.counterOne)}</h1>
                     <h2 className="second-sentence">{this.state.sentenceTwo.substr(0, this.state.counterTwo)}</h2>
                 </div>
-                <button className = "button" onClick={this.handleClick}>CLICK ME!</button>
+                <button className = "button" onClick={this.handleClick}>DO ONCE!</button>
             </div>
         )
     }
