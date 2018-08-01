@@ -1,14 +1,12 @@
 
-<h2>App generating sentences!</h2>
+<h2>App generating sentences written in React!</h2>
 
 <h3>Assumptions of application:</h3>
-- the application generates two lines with sentences.</br>
-- when the whole first sentence is displayed, the next ones appear in the second line.</br>
-- by default, the sentences in the second line are displayed continuously.</br>
-- when the button is clicked, they appears only once.</br>
+The application generates two lines with sentences.</br>
+When the whole first sentence is displayed, the next ones appear in the second line.</br>
+By default, the sentences in the second line are displayed continuously.</br>
+When the button is clicked, they appears only once.</br>
 
-<h4>Stack:</h4>
--React
 </br>
 </br>
 To install app:</br>
