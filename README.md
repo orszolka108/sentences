@@ -9,6 +9,11 @@
 
 <h4>Stack:</h4>
 -React
+</br>
+To install app:</br>
+npm i</br>
+To launch app::</br>
+npm start:</br>
 
 [[Preview Website]](https://orszolka108.github.io/sentences/)
 
